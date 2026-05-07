@@ -1,22 +1,16 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 products = [
-    {"id": 1, "name": "Laptop", "price": 50000},
-    {"id": 2, "name": "Phone", "price": 25000},
-    {"id": 3, "name": "Headphones", "price": 3000}
+    {"name": "Laptop", "price": "₹50,000"},
+    {"name": "Phone", "price": "₹25,000"},
+    {"name": "Headphones", "price": "₹3,000"}
 ]
 
 @app.route('/')
 def home():
-    return jsonify({
-        "message": "Welcome to  E-Commerce Platform"
-    })
-
-@app.route('/products')
-def get_products():
-    return jsonify(products)
+    return render_template("index.html", products=products)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
