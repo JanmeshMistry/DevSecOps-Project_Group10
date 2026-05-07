@@ -1,0 +1,26 @@
+name: AegisFlow Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set Up Docker Build
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker Image
+      run: docker build -t aegisflow-app ./app
+
+    - name: Run Container
+      run: docker run -d -p 5000:5000 aegisflow-app
+
+    - name: Test Application
+      run: curl http://localhost:5000
