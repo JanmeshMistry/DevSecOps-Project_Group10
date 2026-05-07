@@ -39,3 +39,9 @@ jobs:
 
     - name: Run Checkov Scan
       run: checkov -d terraform/
+
+    - name: OWASP ZAP DAST Scan
+      run: |
+        docker run --network="host" \
+        owasp/zap2docker-stable zap-baseline.py \
+        -t http://localhost:5000
