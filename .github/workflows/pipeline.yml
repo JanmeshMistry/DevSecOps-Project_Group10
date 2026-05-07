@@ -33,3 +33,9 @@ jobs:
 
     - name: Scan Docker Image
       run: trivy image --exit-code 1 --severity CRITICAL aegisflow-app
+
+    - name: Install Checkov
+      run: pip install checkov
+
+    - name: Run Checkov Scan
+      run: checkov -d terraform/
