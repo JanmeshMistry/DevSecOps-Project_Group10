@@ -11,7 +11,7 @@ products = [
 @app.route('/')
 def home():
     return jsonify({
-        "message": "Welcome to AegisFlow E-Commerce Platform"
+        "message": "Welcome to  E-Commerce Platform"
     })
 
 @app.route('/products')
